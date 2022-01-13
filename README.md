@@ -8,7 +8,7 @@ v2 nft/whitelist/mint contract
 I love hanguel.
 
 ## Chickiz (KlayChicken V2)
-.
+0x56eE689E3BBbafee554618fD25754Eca6950e97E
 
 ## Presale
 .
