@@ -3,32 +3,27 @@ pragma solidity ^0.5.6;
 import "./Chickiz.sol";
 import "./math/SafeMath.sol";
 import "./ownership/Ownable.sol";
-import "./Whitelist.sol";
 
-contract Presale is Ownable {
+contract PublicSale is Ownable {
     using SafeMath for uint256;
 
     //0x56ee689e3bbbafee554618fd25754eca6950e97e
     Chickiz public nft;
-    //0x13a8902fb35abe750cc1f0d328545c715dbfa852
-    Whitelist public wl;
 
-    uint256 public price = 77 * 1e18;
-    uint256 public nowNum = 1;
-    uint256 public totalLimit = 2001;
+    uint256 public price = 99 * 1e18;
+    uint256 public nowNum = 2001;
+    uint256 public totalLimit = 8001;
     uint256 public transactionLimit = 10;
     bool public saleState = false;
 
-    constructor(Chickiz _nft, Whitelist _wl) public {
+    constructor(Chickiz _nft) public {
         nft = _nft;
-        wl = _wl;
     }
 
     function nftMint(uint256 _num) external payable {
         uint256 totalNum = nowNum.add(_num);
         uint256 totalPrice = price.mul(_num);
         require(saleState == true);
-        require(wl.isWhitelist(msg.sender));
         require(transactionLimit >= _num);
         require(totalLimit >= totalNum);
         require(msg.value >= totalPrice);
